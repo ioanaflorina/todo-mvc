@@ -1,0 +1,16 @@
+
+<suite name="regression">
+    <test name="positive">
+        <classes>
+            <class name="com.todo.mvc.positive.AddTodoTests"/>
+            <class name="com.todo.mvc.positive.EditTodoTests"/>
+            <class name="com.todo.mvc.positive.DeleteTodoTests"/>
+        </classes>
+    </test>
+
+    <test name="negative">
+        <classes>
+            <class name="com.todo.mvc.negative.EditTodoTests"/>
+        </classes>
+    </test>
+</suite>
