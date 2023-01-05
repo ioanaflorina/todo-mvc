@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class EditTodoNegativeTests extends BaseAbstract {
     private String todoValue;
@@ -40,5 +40,18 @@ public class EditTodoNegativeTests extends BaseAbstract {
                 .clickNewTodoField();
         assertThat("The todo value does not appear in todos list.", todosPage.getAllTodoItems(),
                 hasItem(todoValue));
+    }
+
+    @Test(description = "This test verifies that the old todo is still displayed in the list if the user tried" +
+            " to update it with an empty value.")
+    public void doNotUpdateTheAddedTodoWithEmptyValueTest() {
+        int initialNoOfTodos = todosPage.getAllTodoItems().size();
+        todosPage.editAddedTodo(todoValue)
+                .emptyTodoField(todoValue)
+                .pressEnterKeyOnTodoField(todoValue);
+        assertThat("The number of todos after trying to update todo with empty value is different than the " +
+                        "initial number of todos in the list.",
+                todosPage.getAllTodoItems(), hasSize(equalTo(initialNoOfTodos)));
+        assertThat("The value of the initial todo was changed.", todosPage.getAllTodoItems(), hasItem(todoValue));
     }
 }
