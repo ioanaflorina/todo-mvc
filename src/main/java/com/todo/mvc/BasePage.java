@@ -18,7 +18,6 @@ import static com.todo.mvc.data.Constants.APP_SLEEP_TIME;
 public abstract class BasePage {
     protected WebDriver driver;
     protected static final Logger LOGGER = LogManager.getLogger(BasePage.class);
-    private static WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -33,7 +32,7 @@ public abstract class BasePage {
 
     public WebElement waitForElementVisible(WebElement element) {
         Duration duration = Duration.ofSeconds(APP_SLEEP_TIME);
-        wait = new WebDriverWait(driver, duration);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
         int att = 0;
         while (att < 2) {
             try {

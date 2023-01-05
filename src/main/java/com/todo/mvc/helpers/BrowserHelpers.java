@@ -73,11 +73,10 @@ public class BrowserHelpers {
             case "firefox":
                 browserType = FIREFOX;
                 FirefoxOptions firefoxOptions = setFirefoxOptions();
-                /*firefoxOptions.setCapability(FirefoxDriver.PROFILE, setFirefoxPrefs(firefoxOptions));
+                firefoxOptions.setCapability(FirefoxDriver.SystemProperty.BROWSER_PROFILE, setFirefoxPrefs(firefoxOptions));
                 WebDriverManager.addDriverOptions(firefoxOptions);
                 // disable firefox logging
-                System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-                System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");*/
+                System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
                 break;
             default:
                 browserType = CHROME;

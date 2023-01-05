@@ -21,7 +21,8 @@ public class EditTodoTests extends BaseAbstract {
     }
 
 
-    @Test(description = "This test verifies that a todo item can be edited.")
+    @Test(description = "This test verifies that a todo item can be edited and the new value is displayed on the todos " +
+            "listing page.")
     public void editTodoTest() {
         String newTodoValue = RandomStringUtils.randomAlphabetic(5);
         todosPage.editAddedTodo(todoValue)

@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
 
-public class EditTodoTests extends BaseAbstract {
+public class EditTodoNegativeTests extends BaseAbstract {
     private String todoValue;
 
     @BeforeMethod
@@ -19,10 +19,9 @@ public class EditTodoTests extends BaseAbstract {
                 .pressEnterKeyOnNewTodoField();
     }
 
-
     @Test(description = "This test verifies that edited value for todo is displayed on the listing page " +
             "after refreshing the page.")
-    public void editTodoTest() {
+    public void displayEditedTodoAfterPageRefreshTest() {
         String newTodoValue = RandomStringUtils.randomAlphabetic(5);
         todosPage.editAddedTodo(todoValue)
                 .changeValueOfAddedTodo(todoValue, newTodoValue)
@@ -32,5 +31,14 @@ public class EditTodoTests extends BaseAbstract {
                 hasItem(newTodoValue));
         assertThat("The old todo value still appears in todos list.", todosPage.getAllTodoItems(),
                 not(hasItem(todoValue)));
+    }
+
+    @Test(description = "This test verifies that it is not possible to save an empty todo on the listing page.")
+    public void doNotDisplayEmptyTodoItemOnListTest() {
+        todosPage.editAddedTodo(todoValue)
+                .emptyTodoField(todoValue)
+                .clickNewTodoField();
+        assertThat("The todo value does not appear in todos list.", todosPage.getAllTodoItems(),
+                hasItem(todoValue));
     }
 }

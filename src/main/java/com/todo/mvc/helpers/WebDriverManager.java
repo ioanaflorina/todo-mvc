@@ -14,12 +14,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
     private static final Logger LOGGER = LogManager.getLogger(WebDriverManager.class);
-    private static final String FIREFOX_DRIVER_PROPERTY = "webdriver.gecko.driver";
-    private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
     private static MutableCapabilities driverOptions;
 
     public static void addDriverOptions(MutableCapabilities driverOptions) {
@@ -59,7 +56,6 @@ public class WebDriverManager {
             LOGGER.debug("Driver maximize method threw exception on: " + e.getSystemInformation());
             LOGGER.debug("Resize browser using driver.manage().window().setSize(new Dimension(1280, 1024)).");
         }
-
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(45));

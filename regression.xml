@@ -10,7 +10,8 @@
 
     <test name="negative">
         <classes>
-            <class name="com.todo.mvc.negative.EditTodoTests"/>
+            <class name="com.todo.mvc.negative.EditTodoNegativeTests"/>
+            <class name="com.todo.mvc.negative.AddTodoNegativeTests"/>
         </classes>
     </test>
 </suite>

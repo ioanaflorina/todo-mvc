@@ -34,6 +34,11 @@ public class TodosPage extends BasePage {
         return this;
     }
 
+    public TodosPage clickNewTodoField() {
+        waitAndClick(newTodoField);
+        return this;
+    }
+
     public TodosPage pressEnterKeyOnNewTodoField() {
         newTodoField.sendKeys(Keys.ENTER);
         return this;
@@ -58,18 +63,23 @@ public class TodosPage extends BasePage {
     }
 
     public TodosPage changeValueOfAddedTodo(String oldValue, String newValue) {
+        emptyTodoField(oldValue);
+        driver.findElement(By.xpath("//ul[@class='todo-list']//li//div//label[text()='"
+                + oldValue + "']/../following-sibling::input")).sendKeys(newValue);
+
+        return this;
+    }
+
+    public TodosPage emptyTodoField(String todoValue) {
         Actions actions = new Actions(driver);
         actions.click(driver.findElement(By.xpath("//ul[@class='todo-list']//li//div//label[text()='"
-                        + oldValue + "']/../following-sibling::input")))
+                        + todoValue + "']/../following-sibling::input")))
                 .sendKeys(Keys.END)
                 .keyDown(Keys.SHIFT)
                 .sendKeys(Keys.HOME)
                 .keyUp(Keys.SHIFT)
                 .sendKeys(Keys.BACK_SPACE)
                 .perform();
-
-        driver.findElement(By.xpath("//ul[@class='todo-list']//li//div//label[text()='"
-                + oldValue + "']/../following-sibling::input")).sendKeys(newValue);
 
         return this;
     }
